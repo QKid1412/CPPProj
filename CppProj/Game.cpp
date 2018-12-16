@@ -15,21 +15,36 @@ int main()
 
 	Sprite testSprite = Sprite("Assets/Image/rocket.png", 20, 200);
 	testSprite.SetScale(1.25f);
+	testSprite.SpeedBy(10);
 
 	while (true) {
 		engine.Update();
 		testSprite.Update();
 
-		testSprite.SetPos((float)Mouse::GetMouseX(), (float)Mouse::GetMouseY());
+		//testSprite.MoveTo((float)Mouse::GetMouseX(), (float)Mouse::GetMouseY());
 
 		if (Mouse::Button(GLFW_MOUSE_BUTTON_LEFT)) {
-			testSprite.SetRotBy(10);
+			testSprite.RotateBy(100);
 		}
 		if (Mouse::ButtonUp(GLFW_MOUSE_BUTTON_RIGHT)) {
-			testSprite.SetRotBy(-10);
+			testSprite.RotateBy(-100);
 		}
 
-		if (Keyboard::)
+		if (Keyboard::Key(GLFW_KEY_W)) {
+			testSprite.MoveUp();
+		}
+		if (Keyboard::Key(GLFW_KEY_S)) {
+			testSprite.MoveDown();
+		}
+		if (Keyboard::Key(GLFW_KEY_A)) {
+			testSprite.MoveLeft();
+		}
+		if (Keyboard::Key(GLFW_KEY_D)) {
+			testSprite.MoveRight();
+		}
+		if (Keyboard::Key(GLFW_KEY_SPACE)) {
+			testSprite.RotateBy(0.5);
+		}
 
 		engine.BeginRender();
 		testSprite.Render();

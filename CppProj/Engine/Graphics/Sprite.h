@@ -23,6 +23,12 @@ public:
 
 	void MoveTo(float x, float y);
 	void MoveBy(float x, float y);
+
+	void MoveRight();
+	void MoveLeft();
+	void MoveUp();
+	void MoveDown();
+
 	void RotateTo(float x);
 	void RotateBy(float x);
 
