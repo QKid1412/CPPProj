@@ -8,6 +8,7 @@
 #include <string>
 using namespace std;
 
+//uses and displays the texture
 class Sprite {
 public:
 	Sprite();
@@ -17,10 +18,27 @@ public:
 	void Update();
 	void Render();
 
+	void SpeedTo(float x);
+	void SpeedBy(float x);
+
+	void MoveTo(float x, float y);
+	void MoveBy(float x, float y);
+	void RotateTo(float x);
+	void RotateBy(float x);
+
+	void SetScale(float x);
+	void SetScale(float x, float y);
+
 private:
 	Texture texture;
+
+	float speed;
+
 	float xPos;
 	float yPos;
+	float rot;
+	float xScale;
+	float yScale;
 };
 
 #endif

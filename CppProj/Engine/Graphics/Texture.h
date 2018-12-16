@@ -8,6 +8,7 @@
 #include <string>
 using namespace std;
 
+//handles the opengl texture
 class Texture {
 
 public:
