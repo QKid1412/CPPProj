@@ -48,7 +48,7 @@ void Rigidbody::Render(Vector3 c) {
 
 	//Rendering
 	glColor4f(c.x, c.y, c.z, 1);
-	glBegin(GL_LINES);
+	/*glBegin(GL_LINES);
 	{
 
 		glVertex2f(boundingRect.lowerLeftVertex.x, boundingRect.lowerLeftVertex.y);
@@ -64,7 +64,7 @@ void Rigidbody::Render(Vector3 c) {
 		glVertex2f(boundingRect.lowerLeftVertex.x, boundingRect.lowerLeftVertex.y);
 
 	}
-	glEnd();
+	glEnd();*/
 }
 
 void Rigidbody::AddForce(Vector3 f) {

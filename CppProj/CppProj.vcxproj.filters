@@ -54,6 +54,9 @@
     <ClCompile Include="Flappy\Rock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Flappy\RockManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Engine.h">
@@ -90,6 +93,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Flappy\Rock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Flappy\RockManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

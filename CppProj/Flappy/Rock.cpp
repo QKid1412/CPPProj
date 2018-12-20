@@ -3,8 +3,9 @@
 #include "../Engine/Math/Math.h"
 #include "../Engine/Engine.h"
 
-#define DEFAULT_GAP 450
-#define DEFAULT_SPEED 10
+#define DEFAULT_GAP 550
+#define DEFAULT_SPEED 100
+
 #define MIN_SCALE_X 1
 #define MAX_SCALE_X 2
 #define MIN_SCALE_Y 1.3
@@ -49,7 +50,7 @@ Rock::Rock(Vector3 _pos) : Rock() {
 	Rect topRC = Rect();
 	topRC.SetSize(Vector3(Math::Abs(topSprite.GetSize()->x * topSprite.GetScale()->x * SIZEOFFSET_X), Math::Abs(topSprite.GetSize()->y * topSprite.GetScale()->y * SIZEOFFSET_Y), 1));
 	topRB = Rigidbody();
-	topRB.Initialize(0, 0, topSprite.GetPos(), topSprite.GetRot(), topSprite.GetScale(), topSprite.GetSize(), topRC);
+	topRB.Initialize(1, 0, topSprite.GetPos(), topSprite.GetRot(), topSprite.GetScale(), topSprite.GetSize(), topRC);
 
 	// Bottom Part
 	botSprite.SetRandomScaleXY(MIN_SCALE_X, MAX_SCALE_X, MIN_SCALE_Y, MAX_SCALE_Y);
@@ -57,12 +58,16 @@ Rock::Rock(Vector3 _pos) : Rock() {
 	Rect botRC = Rect();
 	botRC.SetSize(Vector3(Math::Abs(botSprite.GetSize()->x * botSprite.GetScale()->x * SIZEOFFSET_X), Math::Abs(botSprite.GetSize()->y * botSprite.GetScale()->y * SIZEOFFSET_Y), 1));
 	botRB = Rigidbody();
-	botRB.Initialize(0, 0, botSprite.GetPos(), botSprite.GetRot(), botSprite.GetScale(), botSprite.GetSize(), botRC);
+	botRB.Initialize(1, 0, botSprite.GetPos(), botSprite.GetRot(), botSprite.GetScale(), botSprite.GetSize(), botRC);
+	
+	// make the rocks move
+	topRB.AddForce(Vector3(-speed, 0, 0));
+	botRB.AddForce(Vector3(-speed, 0, 0));
 }
 
 void Rock::Update() {
-	topSprite.MoveBy(Vector3(-speed * Engine::GetDT(), 0, 0));
-	botSprite.MoveBy(Vector3(-speed * Engine::GetDT(), 0, 0));
+	//topSprite.MoveBy(Vector3(-speed * Engine::GetDT(), 0, 0));
+	//botSprite.MoveBy(Vector3(-speed * Engine::GetDT(), 0, 0));
 	topRB.Update();
 	botRB.Update();
 }
@@ -85,6 +90,7 @@ void Rock::MoveBy(Vector3 by) {
 }
 
 void Rock::UpdatePosition() {
+	// update top and bottom positions
 	Vector3 topPos = pos;
 	topPos.y += (gap / 2) + Math::Abs(topSprite.GetSize()->y * topSprite.GetScale()->y / 2);
 	topSprite.MoveTo(topPos);
@@ -92,6 +98,14 @@ void Rock::UpdatePosition() {
 	Vector3 botPos = pos;
 	botPos.y -= (gap / 2) + Math::Abs((botSprite.GetSize()->y * botSprite.GetScale()->y) / 2);
 	botSprite.MoveTo(botPos);
+}
+
+float Rock::GetX() {
+	return topSprite.GetPos()->x;
+}
+
+float Rock::GetWidth() {
+	return topSprite.GetSize()->x * topSprite.GetScale()->x;
 }
 
 void Rock::SetGap(float _gap) {

@@ -8,6 +8,7 @@
 #include "Flappy/Flapper.h"
 #include "Flappy/InputManager.h"
 #include "Flappy/Rock.h"
+#include "Flappy/RockManager.h"
 
 using namespace std;
 
@@ -25,21 +26,21 @@ int main()
 	Flapper player(testSprite);
 
 	Rock::Initialize();
-	Rock rock(Vector3(0, 0, 0));
+	RockManager rockManager;
 
-	InputManager im(&player, &rock);
+	InputManager im(&player);
 
 	while (true) {
 		engine.Update();
 		player.Update();
-		rock.Update();
-		bool isColliding = Rigidbody::IsColliding(player.GetRB(), rock.GetTopRB()) || Rigidbody::IsColliding(player.GetRB(), rock.GetBotRB());
+		rockManager.Update();
+		bool isColliding = rockManager.CheckCollision(player);
 		cout << (isColliding ? "COLLIDING" : "....") << endl;
 		im.Update();
 
 		engine.BeginRender();
 		player.Render();
-		rock.Render();
+		rockManager.Render();
 		engine.EndRender();
 	}
 

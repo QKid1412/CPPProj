@@ -16,7 +16,7 @@ public:
 	void Update();
 private:
 	Flapper* flapper;
-	Rock * rock;
+	//Rock * rock;
 
 };
 

@@ -30,7 +30,10 @@ void Flapper::Update() {
 
 	float newRot = (maxRot / flapForce) * yVel;
 	//cout << yVel << "::" << newRot << endl;
-	sprite.RotateTo(newRot);
+
+	// give min limit to avoid over rotate
+	if( newRot > minRot)
+		sprite.RotateTo(newRot);
 }
 
 void Flapper::Render() {

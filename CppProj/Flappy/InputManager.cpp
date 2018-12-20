@@ -19,5 +19,4 @@ void InputManager::Update() {
 		flapper->Flap();
 	}
 
-	rock->MoveTo(Vector3(Mouse::GetMouseX(), Mouse::GetMouseY(), 0));
 }

@@ -18,6 +18,9 @@ public:
 	void MoveTo(Vector3 to);
 	void MoveBy(Vector3 by);
 
+	float GetX();
+	float GetWidth();
+
 	void SetGap(float _gap);
 	
 	Rigidbody GetTopRB();

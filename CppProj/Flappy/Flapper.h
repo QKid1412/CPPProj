@@ -5,6 +5,7 @@
 #include "../Engine/Physics/Rigidbody.h"
 #include "../Engine/Math/Rect.h"
 
+// simulate flappy(gravity related) behaviour
 class Flapper {
 public:
 	Flapper();

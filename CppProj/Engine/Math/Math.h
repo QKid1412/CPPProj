@@ -18,6 +18,7 @@ namespace Math {
 	float Abs(float x);
 
 	float RandomFloat(float minF, float maxF);
+	int RandomInt(int min, int max);
 }
 
 #endif // !GAME_MATH

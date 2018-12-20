@@ -127,6 +127,7 @@
     <ClCompile Include="Flappy\Flapper.cpp" />
     <ClCompile Include="Flappy\InputManager.cpp" />
     <ClCompile Include="Flappy\Rock.cpp" />
+    <ClCompile Include="Flappy\RockManager.cpp" />
     <ClCompile Include="Game.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +143,7 @@
     <ClInclude Include="Flappy\Flapper.h" />
     <ClInclude Include="Flappy\InputManager.h" />
     <ClInclude Include="Flappy\Rock.h" />
+    <ClInclude Include="Flappy\RockManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -57,5 +57,12 @@ namespace Math {
 		float r = random * diff;
 		return minF + r;
 	}
+
+	int RandomInt(int min, int max) {
+		int random = ((int)rand()) / (int)RAND_MAX;
+		int diff = max - min;
+		int r = random * diff;
+		return min + r;
+	}
 }
 
