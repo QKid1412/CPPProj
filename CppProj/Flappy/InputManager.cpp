@@ -1,8 +1,17 @@
 #include "InputManager.h"
 
+InputManager::InputManager() {
+
+}
+
 InputManager::InputManager(Flapper* _flapper) {
 	flapper = _flapper;
 }
+
+/*InputManager::InputManager(Flapper* _flapper, Rock* _rock) {
+	flapper = _flapper;
+	rock = _rock;
+}*/
 
 void InputManager::Update() {
 
@@ -10,4 +19,5 @@ void InputManager::Update() {
 		flapper->Flap();
 	}
 
+	rock->MoveTo(Vector3(Mouse::GetMouseX(), Mouse::GetMouseY(), 0));
 }

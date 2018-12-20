@@ -3,6 +3,7 @@
 
 #include "../Engine/Graphics/Sprite.h"
 #include "../Engine/Physics/Rigidbody.h"
+#include "../Engine/Math/Rect.h"
 
 class Flapper {
 public:

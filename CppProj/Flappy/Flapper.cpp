@@ -13,7 +13,10 @@ Flapper::Flapper() {
 
 Flapper::Flapper(Sprite _sprite):Flapper() {
 	sprite = _sprite;
-	rb.Initialize(INIT_F, GRAVITY, sprite.GetPos(), sprite.GetRot(), sprite.GetScale(), sprite.GetSize());
+	Vector3 sizeOffset(0.9, 0.8, 1);
+	Rect boundingRect = Rect();
+	boundingRect.SetSize(*sprite.GetSize() * *sprite.GetScale() * sizeOffset);
+	rb.Initialize(INIT_F, GRAVITY, sprite.GetPos(), sprite.GetRot(), sprite.GetScale(), sprite.GetSize(), boundingRect);
 }
 
 void Flapper::Update() {
@@ -26,7 +29,7 @@ void Flapper::Update() {
 	}
 
 	float newRot = (maxRot / flapForce) * yVel;
-	cout << yVel << "::" << newRot << endl;
+	//cout << yVel << "::" << newRot << endl;
 	sprite.RotateTo(newRot);
 }
 

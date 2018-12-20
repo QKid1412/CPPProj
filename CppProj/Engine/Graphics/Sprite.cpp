@@ -1,5 +1,6 @@
 #include "Sprite.h"
 #include "../Engine.h"
+#include <iostream>
 
 #define INIT_SPEED 100
 
@@ -104,6 +105,25 @@ void Sprite::SetScale(float x) {
 
 void Sprite::SetScale(Vector3 v) {
 	scale = v;
+}
+
+void Sprite::SetRandomScale(float minF, float maxF) {
+	float rand = Math::RandomFloat(minF, maxF);
+	scale = Vector3(rand);
+}
+
+
+void Sprite::SetRandomScaleXY(float minX, float maxX, float minY, float maxY) {
+	scale = Vector3(Math::RandomFloat(minX, maxX), Math::RandomFloat(minY, maxY), 1);
+	//std::cout << "scaleX: " << scale.x << "scaleY: " << scale.y << std::endl;
+}
+
+void Sprite::FlipHorizontal() {
+	scale.x = -scale.x;
+}
+
+void Sprite::FlipVertical() {
+	scale.y = -scale.y;
 }
 
 Vector3* Sprite::GetPos() {

@@ -4,6 +4,7 @@
 #include "GLFW/glfw3.h"
 #include "Texture.h"
 #include "../Math/Vector3.h"
+#include "../Math/Math.h"
 
 #include <iostream>
 #include <string>
@@ -35,6 +36,11 @@ public:
 
 	void SetScale(float x);
 	void SetScale(Vector3 v);
+	void SetRandomScale(float minF, float maxF);
+	void SetRandomScaleXY(float minX, float maxX, float minY, float maxY);
+
+	void FlipHorizontal();
+	void FlipVertical();
 
 	Vector3* GetPos();
 	float* GetRot();
