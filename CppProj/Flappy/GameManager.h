@@ -15,7 +15,8 @@ public:
 		START,
 		GAMEPLAY,
 		GAMEOVER,
-		COUNT
+		COUNT,
+		PAUSE
 	};
 
 	GameManager();
@@ -32,6 +33,7 @@ private:
 
 	Sprite mStartSprite;
 	Sprite mEndSprite;
+	Sprite mPauseSprite;
 
 	State mState;
 };

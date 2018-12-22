@@ -12,6 +12,7 @@ GameManager::GameManager() {
 
 	mStartSprite = Sprite("Assets/Image/gamestart.png", Vector3(Engine::SCREEN_WIDTH / 2, Engine::SCREEN_HEIGHT / 2, 0));
 	mEndSprite = Sprite("Assets/Image/gameover.png", Vector3(Engine::SCREEN_WIDTH / 2, Engine::SCREEN_HEIGHT / 2, 0));
+	mPauseSprite = Sprite("Assets/Image/gamepause.png", Vector3(Engine::SCREEN_WIDTH / 2, Engine::SCREEN_HEIGHT / 2, 0));
 
 	mState = State::START;
 }
@@ -52,6 +53,22 @@ void GameManager::Start(){
 				mFlapper->Render();
 				mRockManager->Render();
 				mEngine->EndRender();
+
+				if (Keyboard::KeyDown(GLFW_KEY_P)) {
+					SetState(State::PAUSE);
+				}
+			}
+			break;
+			case State::PAUSE: {
+				mEngine->BeginRender();
+				mFlapper->Render();
+				mRockManager->Render();
+				mPauseSprite.Render();
+				mEngine->EndRender();
+
+				if (Keyboard::KeyDown(GLFW_KEY_P) || Keyboard::KeyDown(GLFW_KEY_SPACE)) {
+					SetState(State::GAMEPLAY);
+				}
 			}
 			break;
 			case State::GAMEOVER: {
@@ -61,7 +78,7 @@ void GameManager::Start(){
 				mEndSprite.Render();
 				mEngine->EndRender();
 
-				if (Keyboard::KeyDown(GLFW_KEY_SPACE) || Mouse::ButtonDown(GLFW_MOUSE_BUTTON_LEFT)) {
+				if (Keyboard::KeyDown(GLFW_KEY_R) || Mouse::ButtonDown(GLFW_MOUSE_BUTTON_LEFT)) {
 					SetState(State::START);
 				}
 			}
