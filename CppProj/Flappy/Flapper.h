@@ -15,11 +15,14 @@ public:
 	void Render();
 
 	void Flap();
+	void Reset();
 	
 	Sprite& GetSprite();
 	Rigidbody& GetRB();
 
 private:
+	void HandleInput();
+
 	Sprite sprite;
 	Rigidbody rb;
 

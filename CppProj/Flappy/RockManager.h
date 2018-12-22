@@ -16,6 +16,7 @@ public:
 	void Render();
 
 	bool CheckCollision(Flapper& flapper);
+	void Reset();
 
 private:
 	void CreateRock();
@@ -24,6 +25,18 @@ private:
 
 	float xSeparation;
 	float ySeparation;
+	float xSeparationSpeed;
+	float ySeparationSpeed;
+	float increaseSpeed;
+
+	float xRandMin;
+	float xRandMax;
+	float yRandMin;
+	float yRandMax;
+
+	float ySpawnMin;
+
+	int totalRocks;
 };
 
 #endif // !GAME_ROCKMANAGER

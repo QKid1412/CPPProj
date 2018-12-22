@@ -11,6 +11,7 @@ public:
 
 	Rock();
 	Rock(Vector3 _pos);
+	Rock(Vector3 _pos, float _speed);
 
 	void Update();
 	void Render();
@@ -22,6 +23,7 @@ public:
 	float GetWidth();
 
 	void SetGap(float _gap);
+	void SetSpeed(float _speed);
 	
 	Rigidbody GetTopRB();
 	Rigidbody GetBotRB();

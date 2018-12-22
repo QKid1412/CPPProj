@@ -2,7 +2,25 @@
 #include "../Engine/Engine.h"
 #include "../Engine/Physics/Rigidbody.h"
 
-RockManager::RockManager() : xSeparation(100), ySeparation(500) {
+#define RAND_MINX 350
+#define RAND_MAXX 750
+#define RAND_MINY 300
+#define RAND_MAXY 650
+
+RockManager::RockManager() :
+	xSeparationSpeed(10),
+	ySeparationSpeed(10),
+	xRandMin(350),
+	xRandMax(750),
+	yRandMin(400),
+	yRandMax(750),
+	ySpawnMin(300),
+	increaseSpeed(0)
+{
+	xSeparation = Math::RandomFloat(xRandMin, xRandMax);
+	ySeparation = Math::RandomFloat(yRandMin, yRandMax);
+	totalRocks = 0;
+	Rock::Initialize();
 	CreateRock();
 }
 
@@ -54,6 +72,42 @@ bool RockManager::CheckCollision(Flapper& flapper) {
 	return isColliding;
 }
 
+void RockManager::Reset() {
+	xRandMin = 350;
+	xRandMax = 750;
+	yRandMin = 400;
+	yRandMax = 750;
+	ySpawnMin = 300;
+	increaseSpeed = 0;
+
+	for (int i = 0; i < rocks.size();i++) {
+		delete rocks[i];
+	}
+	rocks.clear();
+
+	totalRocks = 0;
+	CreateRock();
+}
+
 void RockManager::CreateRock() {
-	rocks.push_back(new Rock(Vector3(2000, Engine::SCREEN_HEIGHT / 2, 0)));
+	xSeparation = Math::RandomFloat(RAND_MINX, RAND_MAXX);
+	ySeparation = Math::RandomFloat(RAND_MINY, RAND_MAXY);
+
+	float spawnY = Math::RandomFloat(ySpawnMin, Engine::SCREEN_HEIGHT - ySpawnMin);
+	Rock* rock = new Rock(Vector3(Engine::SCREEN_WIDTH, spawnY, 0), increaseSpeed);
+	rock->SetGap(ySeparation);
+
+	rocks.push_back(rock);
+	totalRocks++;
+
+	if (totalRocks % 2 == 0) {
+		xRandMin += xSeparationSpeed;
+		xRandMax -= xSeparationSpeed;
+
+		yRandMin += ySeparationSpeed;
+		yRandMax -= ySeparationSpeed;
+
+		ySpawnMin -= ySeparationSpeed;
+		increaseSpeed += 10;
+	}
 }

@@ -7,9 +7,9 @@
 #define DEFAULT_SPEED 100
 
 #define MIN_SCALE_X 1
-#define MAX_SCALE_X 2
+#define MAX_SCALE_X 2.8
 #define MIN_SCALE_Y 1.3
-#define MAX_SCALE_Y 3
+#define MAX_SCALE_Y 2.8
 
 #define SIZEOFFSET_X 0.8
 #define SIZEOFFSET_Y 0.8
@@ -34,12 +34,14 @@ Rock::Rock() {
 	speed = DEFAULT_SPEED;
 }
 
-Rock::Rock(Vector3 _pos) : Rock() {
+Rock::Rock(Vector3 _pos, float _speed) : Rock() {
+	speed += _speed ;
+
 	if (!rockSprite) {
 		return;
 	}
 
-	pos = _pos;
+	pos = _pos + Vector3(GetWidth(), 0, 0);
 
 	UpdatePosition();
 
@@ -111,6 +113,10 @@ float Rock::GetWidth() {
 void Rock::SetGap(float _gap) {
 	gap = _gap;
 	UpdatePosition();
+}
+
+void Rock::SetSpeed(float _speed) {
+	speed = _speed;
 }
 
 Rigidbody Rock::GetTopRB() {

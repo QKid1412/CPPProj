@@ -1,13 +1,16 @@
 #include "Flapper.h"
 #include "../Engine/Engine.h"
+#include "../Engine/IO/Keyboard.h"
+#include "../Engine/IO/Mouse.h"
 
 #define INIT_F 0.8f
-#define GRAVITY -8
-#define DEFAULT_FORCE 400
+#define GRAVITY -9.8
+#define DEFAULT_FORCE 300
+#define MAX_ROT 30
 
 Flapper::Flapper() {
 	flapForce = DEFAULT_FORCE;
-	maxRot = 30;
+	maxRot = MAX_ROT;
 	minRot = -maxRot;
 }
 
@@ -20,6 +23,9 @@ Flapper::Flapper(Sprite _sprite):Flapper() {
 }
 
 void Flapper::Update() {
+
+	HandleInput();
+
 	sprite.Update();
 	rb.Update();
 
@@ -47,10 +53,22 @@ void Flapper::Flap() {
 	sprite.RotateTo(maxRot);
 }
 
+void Flapper::Reset() {
+	sprite.MoveTo(Vector3(Engine::SCREEN_WIDTH / 4, Engine::SCREEN_HEIGHT / 2, 0));
+	sprite.RotateTo(0);
+	rb.SetVel(Vector3(0, 0, 0));
+}
+
 Sprite& Flapper::GetSprite() {
 	return sprite;
 }
 
 Rigidbody& Flapper::GetRB() {
 	return rb;
+}
+
+void Flapper::HandleInput() {
+	if (Keyboard::Key(GLFW_KEY_SPACE) || Mouse::ButtonDown(GLFW_MOUSE_BUTTON_LEFT)) {
+		Flap();
+	}
 }
