@@ -4,15 +4,16 @@ GameManager::GameManager() {
 	mEngine = new Engine();
 	mEngine->Initialize("GameWindow");
 
-	Sprite testSprite = Sprite("Assets/Image/rocket.png", Vector3(Engine::SCREEN_WIDTH / 4, Engine::SCREEN_HEIGHT / 2, 0));
+	Sprite testSprite = Sprite("Images/rocket.png", Vector3(Engine::SCREEN_WIDTH / 4, Engine::SCREEN_HEIGHT / 2, 0));
 	testSprite.SetScale(0.8f);
 
 	mFlapper = new Flapper(testSprite);
 	mRockManager = new RockManager();
 
-	mStartSprite = Sprite("Assets/Image/gamestart.png", Vector3(Engine::SCREEN_WIDTH / 2, Engine::SCREEN_HEIGHT / 2, 0));
-	mEndSprite = Sprite("Assets/Image/gameover.png", Vector3(Engine::SCREEN_WIDTH / 2, Engine::SCREEN_HEIGHT / 2, 0));
-	mPauseSprite = Sprite("Assets/Image/gamepause.png", Vector3(Engine::SCREEN_WIDTH / 2, Engine::SCREEN_HEIGHT / 2, 0));
+	mStartSprite = Sprite("Images/gamestart.png", Vector3(Engine::SCREEN_WIDTH / 2, Engine::SCREEN_HEIGHT / 2, 0));
+	mEndSprite = Sprite("Images/gameover.png", Vector3(Engine::SCREEN_WIDTH / 2, Engine::SCREEN_HEIGHT / 2, 0));
+	mPauseSprite = Sprite("Images/gamepause.png", Vector3(Engine::SCREEN_WIDTH / 2, Engine::SCREEN_HEIGHT / 2, 0));
+	mPauseSprite.SetScale(0.6f);
 
 	mState = State::START;
 }
@@ -24,7 +25,7 @@ GameManager::~GameManager() {
 }
 void GameManager::Start(){
 
-	while (true) {
+	while (!glfwWindowShouldClose(Engine::window)) {
 		mEngine->Update();
 		
 		switch (mState) {
@@ -43,9 +44,13 @@ void GameManager::Start(){
 			case State::GAMEPLAY: {
 				mFlapper->Update();
 				mRockManager->Update();
-				bool isColliding = mRockManager->CheckCollision(*mFlapper);
-				// cout << (isColliding ? "COLLIDING" : "....") << endl;
-				if (isColliding) {
+				bool isGameOver = mRockManager->CheckCollision(*mFlapper);
+
+				if (mFlapper->GetSprite().GetPos()->y < 0 || mFlapper->GetSprite().GetPos()->y > Engine::SCREEN_HEIGHT) {
+					isGameOver = true;
+				}
+
+				if (isGameOver) {
 					SetState(State::GAMEOVER);
 				}
 

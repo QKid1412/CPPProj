@@ -21,6 +21,7 @@ public:
 
 	float GetX();
 	float GetWidth();
+	float GetHeight();
 
 	void SetGap(float _gap);
 	void SetSpeed(float _speed);
@@ -38,6 +39,7 @@ private:
 	Rigidbody botRB;
 
 	Vector3 pos;
+	float height;
 
 	float gap;
 	float speed;

@@ -19,7 +19,7 @@
 Sprite* Rock::rockSprite = NULL;
 
 void Rock::Initialize() {
-	rockSprite = new Sprite("Assets/Image/rock.png");
+	rockSprite = new Sprite("Images/rock.png");
 }
 
 Rock::Rock() {
@@ -42,6 +42,7 @@ Rock::Rock(Vector3 _pos, float _speed) : Rock() {
 	}
 
 	pos = _pos + Vector3(GetWidth(), 0, 0);
+	height = pos.x;
 
 	UpdatePosition();
 
@@ -67,9 +68,12 @@ Rock::Rock(Vector3 _pos, float _speed) : Rock() {
 	botRB.AddForce(Vector3(-speed, 0, 0));
 }
 
+float Rock::GetHeight() {
+	return height;
+}
+
 void Rock::Update() {
-	//topSprite.MoveBy(Vector3(-speed * Engine::GetDT(), 0, 0));
-	//botSprite.MoveBy(Vector3(-speed * Engine::GetDT(), 0, 0));
+	height = topSprite.GetPos()->x;
 	topRB.Update();
 	botRB.Update();
 }

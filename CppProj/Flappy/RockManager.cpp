@@ -15,7 +15,8 @@ RockManager::RockManager() :
 	yRandMin(400),
 	yRandMax(750),
 	ySpawnMin(300),
-	increaseSpeed(0)
+	increaseSpeed(0),
+	score(0)
 {
 	xSeparation = Math::RandomFloat(xRandMin, xRandMax);
 	ySeparation = Math::RandomFloat(yRandMin, yRandMax);
@@ -45,6 +46,10 @@ void RockManager::Update() {
 			if (rocks[i]->GetX() < Engine::SCREEN_WIDTH - xSeparation) {
 				CreateRock();
 			}
+		}
+
+		if (rocks[i]->GetX() < Engine::SCREEN_WIDTH / 2 && rocks[i]->GetHeight() > Engine::SCREEN_WIDTH / 2) {
+			score++;
 		}
 	}
 

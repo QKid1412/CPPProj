@@ -105,4 +105,21 @@
   <ItemGroup>
     <Library Include="Engine\Graphics\SOIL\lib\SOIL.lib" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\gameover.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\gamepause.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\gamestart.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\rock.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\rocket.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

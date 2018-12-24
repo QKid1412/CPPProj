@@ -37,6 +37,7 @@ private:
 	float ySpawnMin;
 
 	int totalRocks;
+	int score;
 };
 
 #endif // !GAME_ROCKMANAGER

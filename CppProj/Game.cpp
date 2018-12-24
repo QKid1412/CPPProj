@@ -1,3 +1,5 @@
+#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
+
 #include <iostream>
 #include <ctime>
 
@@ -7,13 +9,12 @@ using namespace std;
 
 int main()
 {
-	//cout << "Hello, Twitch" << endl;
+	//system("dir");
+
 	srand(time(NULL));
 
-	GameManager gameManager;
-	
+	GameManager gameManager;	
 	gameManager.Start();
-
-
+	
 	return 0;
 }

@@ -12,6 +12,7 @@ class Engine {
 public:
 	static int SCREEN_WIDTH;
 	static int SCREEN_HEIGHT;
+	static GLFWwindow* window;
 	static float GetDT();
 
 	Engine();
@@ -23,9 +24,9 @@ public:
 	void BeginRender();
 	void EndRender();
 
-private:
-	static GLFWwindow* window;
 
+
+private:
 	static float dt;
 	float lastTime;
 };

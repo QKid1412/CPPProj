@@ -67,7 +67,9 @@ void Engine::Update() {
 	double now = glfwGetTime();
 	dt = (now - lastTime); 
 	lastTime = now;
-	glfwPollEvents();
+	if (!glfwWindowShouldClose(window)) {
+		glfwPollEvents();
+	}
 }
 
 void Engine::BeginRender() {
@@ -77,9 +79,12 @@ void Engine::BeginRender() {
 }
 
 void Engine::EndRender() {
-	glfwSwapBuffers(window);
+	if (!glfwWindowShouldClose(window)) {
+		glfwSwapBuffers(window);
+	}
 }
 
 float Engine::GetDT() {
 	return dt;
 }
+
